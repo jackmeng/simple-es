@@ -13,9 +13,10 @@ require __DIR__.'/../vendor/autoload.php';
 
 
 $config = include 'config.php';
+
 require 'common.php';
 
-echo "<pre>";
+//TODO ：索引的管理建议使用kibana来进行
 
 // 连接es
 $es = es('dp_articles');
