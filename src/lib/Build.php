@@ -69,7 +69,11 @@ class Build
                 }
             }
         }
-        $instance->params['client'] = ['ignore'=>404];
+        $instance->params['client'] = [
+            'ignore'=>404,
+            'timeout' => 10,        // ten second timeout
+            'connect_timeout' => 10
+        ];
 
         return $instance->params;
     }

@@ -96,6 +96,7 @@ class Es
         if (is_null(self::$connect) && !is_null($config)){
             self::$connect = ClientBuilder::create()           // Instantiate a new ClientBuilder
             ->setHosts($config)      // Set the hosts
+            ->setRetries(1)
             ->build();              // Build the client object
         }
 
