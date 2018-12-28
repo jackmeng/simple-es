@@ -103,7 +103,7 @@ class Dp_articles extends \SimpleEs\EsModel
 {
 
 }
-
+// EsModel 基类用魔术方法代理了Es类,可以直接用静态方式访问任何一个Es类中的方法
 $row = Dp_articles::get(1);
 
 var_dump($row);
