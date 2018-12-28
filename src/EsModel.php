@@ -13,7 +13,8 @@ class EsModel
 {
     public static function __callStatic($name, $arguments)
     {
-        $index = strtolower(array_pop(explode('\\',get_called_class())));
+        $modelName = explode('\\',get_called_class());
+        $index = strtolower(array_pop($modelName));
 
         if (method_exists(Es::class,$name)){
             return Es::getInstance(config('elasticsearch'),$index)->$name(...$arguments);
