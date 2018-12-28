@@ -45,6 +45,7 @@ class Build
         if (!(self::$instance instanceof self)){
             self::$instance = new static();
         }
+        self::$instance->params = [];
         return self::$instance;
     }
 

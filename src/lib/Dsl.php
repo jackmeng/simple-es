@@ -30,31 +30,22 @@ class Dsl
         if (!(self::$instance instanceof self)){
             self::$instance = new self();
         }
-        self::$instance->init();
 
         return self::$instance;
     }
 
-    public function init()
-    {
-        $this->options = [
-            'index'=>&$this->index,
-            'type'=>$this->type
-        ];
-    }
-
     public function setOption($key,$value)
     {
-
         $this->options[$key][] = $value;
-
     }
 
     public function build($curd)
     {
+        $this->options['index'] = $this->index;
+        $this->options['type'] = $this->type;
         $this->curd = $curd;
         $this->params = Build::run($this->options,$curd);
-
+        $this->options = [];
         return $this->params;
     }
 
