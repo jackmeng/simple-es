@@ -1,11 +1,10 @@
 {
     "name": "jackmeng/simple-es",
-    "version": "v0.0.2",
     "type": "library",
     "description": "这是一个可以进行简易操作的elasticsearch类库",
     "keywords": ["elasticsearch", "es"],
     "homepage": "https://github.com/jackmeng/simple-es/",
-    "license": ["MIT"],
+    "license": "MIT",
     "require": {
         "php": "^7.0",
         "elasticsearch/elasticsearch": "^6.0"
