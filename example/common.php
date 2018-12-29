@@ -20,3 +20,10 @@ function es($index='0')
 {
     return \SimpleEs\Es::getInstance(config('elasticsearch'),$index);
 }
+
+function dump($data)
+{
+    echo "<pre>";
+    var_dump($data);
+    echo "<pre>";
+}

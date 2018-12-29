@@ -324,6 +324,8 @@ class Es
 
         if (isset($params['body']['query'])){
             $this->response = $this->client->deleteByQuery($params);
+        }elseif(is_array($id)){
+            $this->response = $this->client->bulk($params);
         }else{
             $this->response = $this->client->delete($params);
         }
@@ -335,9 +337,17 @@ class Es
             }
         }elseif(isset($this->response['total'])){
             return $this->response['total'];
+        }elseif(isset($this->response['items'])){
+            $row = 0;
+            foreach ($this->response['items'] as $item){
+                if(isset($item['delete']['result']) && $item['delete']['result'] === 'deleted'){
+                    $row++;
+                }
+            }
+            return $row;
         }
 
-        return $this->response;
+        return false;
     }
 
 
@@ -408,10 +418,19 @@ class Es
 
 
     /**
-     * 获取最后的响应结果
+     * 获取最后的响应结果（名称错误，将会在未来某个版本删除）
      * @return null|array
      */
     public function getLastResult()
+    {
+        return $this->response;
+    }
+
+    /**
+     * 获取最后的响应结果
+     * @return null|array
+     */
+    public function getLastResponse()
     {
         return $this->response;
     }

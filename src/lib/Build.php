@@ -111,7 +111,20 @@ class Build
 
     public function id($value)
     {
-        $this->params['id'] = $value[0];
+        if ($this->crud = 'd' && is_array($value[0])){
+            $body = [];
+            foreach ($value[0] as $item){
+                $body[] = ['delete'=>['_id'=>$item]];
+            }
+            if (isset($this->params['body'])){
+                $this->params['body'] = array_merge($this->params['body'],$body);
+            }else{
+                $this->params['body'] = $body;
+            }
+        }else{
+            $this->params['id'] = $value[0];
+        }
+
     }
 
     public function _source($value)

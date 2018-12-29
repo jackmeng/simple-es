@@ -17,7 +17,6 @@ $config = include 'config.php';
 require 'common.php';
 
 //TODO ：索引的管理建议使用kibana来进行
-
 // 连接es
 $es = es('dp_articles');
 // 下面这行代码等同上一行
@@ -92,6 +91,12 @@ $id = 'gWJr6GcBUBfJ4traAMbD';
 // 按id删除数据
 //$deleteById_res = $es->delete($id);
 //var_dump($deleteById_res);
+// 按id批量删除数据
+$deleteByIds_res = $es->fetchDsl(false)->delete([1,2,3]);
+dump($es->getLastResponse());
+dump($deleteByIds_res);
+
+die;
 
 // 按条件删除数据
 //$deleteById_res = $es->fetchDsl(false)->query('match','title','titles')->delete();
